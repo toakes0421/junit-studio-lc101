@@ -2,6 +2,8 @@ package main;
 
 
 public class BalancedBrackets {
+
+    public boolean isBackToBack = true;
     /**
      * The function BalancedBrackets should return true if and only if
      * the input string has a set of "balanced" brackets.
@@ -22,14 +24,23 @@ public class BalancedBrackets {
      * @return true if balanced, false otherwise
      */
     public static boolean hasBalancedBrackets(String str) {
+        char lastBracket = 'c';
         int brackets = 0;
         for (char ch : str.toCharArray()) {
             if (ch == '[') {
                 brackets++;
+                if (lastBracket == ']') {
+                    return false;}
+                lastBracket = ch;
             } else if (ch == ']') {
                 brackets--;
+                lastBracket = ch;
+
             }
         }
         return brackets == 0;
     }
+
+
 }
+
